@@ -1,0 +1,36 @@
+command=~/.config/i3blocks/$BLOCK_NAME/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+[mediaplayer]
+instance=spotify
+interval=5
+signal=10
+
+[volume-pulseaudio]
+interval=once
+signal=10
+STEP=5%
+LONG_FORMAT= ${SYMB}${VOL}%
+MUTED_COLOR="#faa0a0"
+
+[memory]
+interval=10
+
+[bandwidth3]
+interval=persist
+markup=pango
+UNIT=KB
+
+[public-ip]
+command=wget -qO- icanhazip.com
+interval=60
+
+[batterybar]
+interval=5
+markup=pango
+min_width=■■■■■
+
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=1
