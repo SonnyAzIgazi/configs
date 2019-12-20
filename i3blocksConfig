@@ -1,36 +1,147 @@
+# The man page is also hosted at http://vivien.github.io/i3blocks
 command=~/.config/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator_block_width=15
 markup=none
-
+border_bottom=1
+border_top=0
+border_right=0
+border_left=0
+#
 [mediaplayer]
-instance=spotify
 interval=5
+label=<span size="large"></span> 
+markup=pango
+color=#1DB954
+border=#1DB954
+instance=spotify
 signal=10
 
 [volume-pulseaudio]
 interval=once
 signal=10
+DEFAULT_COLOR=#b293d8
 STEP=5%
+border=#b293d8
+AUDIO_HIGH_SYMBOL= 
+AUDIO_MED_SYMBOL= 
+AUDIO_LOW_SYMBOL=
+min_width=  100% 
 LONG_FORMAT= ${SYMB}${VOL}%
-MUTED_COLOR="#faa0a0"
+MUTED_COLOR="#b293d8"
 
+
+# Memory usage
+#
+# The type defaults to "mem" if the instance is not specified.
 [memory]
+label= 
+color=#F9ac9d
+border=#f9ac9d
 interval=10
+
+#[memory]
+#label=SWAP
+#instance=swap
+#separator=false
+#interval=30
+
+# Disk usage
+#
+# The directory defaults to $HOME if the instance is not specified.
+# The script may be called with a optional argument to set the alert
+# (defaults to 10 for 10%).
+#[disk]
+#label=HOME
+#DIR=/mnt/data
+#interval=30
+
+# Network interface monitoring
+#
+# If the instance is not specified, use the interface used for default route.
+# The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
+#[iface]
+#IFACE=wlan0
+#color=#00FF00
+#interval=10
+#separator=false
+
+#[wifi]
+#INTERFACE=wlp3s0
+#label=wifi:
+#interval=10
+#separator=false
 
 [bandwidth3]
 interval=persist
 markup=pango
+color=#f2c69f
+border=#f2c69f
+min_width=################
 UNIT=KB
 
-[public-ip]
-command=wget -qO- icanhazip.com
-interval=60
 
+[public-ip]
+label=<span foreground='#aaffaa'></span> 
+command=wget -qO- icanhazip.com
+markup=pango
+color=#aaffaa
+border=#aaffaa
+interval=60
+# CPU usage
+#
+# The script may be called with -w and -c switches to specify thresholds,
+# see the script for details.
+#[cpu_usage]
+#label=CPU
+#interval=10
+
+#min_width=CPU 100.00%
+#separator=false
+
+#[load_average]
+#label=LOAD
+#interval=10
+
+# Battery indicator
+#
+# The battery instance defaults to 0.
 [batterybar]
 interval=5
+label= 
 markup=pango
+border=#AAAAFF
+C1=#2222AA
+C2=#3333AA
+C3=#4444AA
+C4=#5555BB
+C5=#6666CC
+C6=#7777DD
+C7=#8888EE
+C8=#9999FF
+C9=#AAAAFF
+CHARGING_COLOR=#AAFFCC
+FULL_COLOR=#AAAAFF
+color=#aaaaff
 min_width=■■■■■
 
+# Date Time
+#\
+[keyboard-layout]
+label= 
+command=if ($x) then xkb-switch; else if [ "$(xkb-switch)" == "us" ]; then setxkbmap "hu"; else setxkbmap "us"; fi; xkb-switch; fi
+color=#abdafc
+border=#abdafc
+interval=5
+
+[weather-report]
+command=curl https://wttr.in/Vac?format="%c+%t+(%C)"
+color=#c2d076
+border=#c2d076
+interval=30
+
 [time]
+label= 
+markup=pango
 command=date '+%Y-%m-%d %H:%M:%S'
+border=#ffffff
 interval=1
